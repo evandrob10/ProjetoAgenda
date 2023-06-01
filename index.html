@@ -3,8 +3,9 @@
         <head>
             <meta charset="utf-8" />
             <title>Home</title>
-            <meta name="viewport" content="width=device-width" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <link rel="stylesheet" type="text/css" href="./css/style-padrao.module.css"/>
+            <link rel="stylesheet" type="text/css" href="./css/home.module.css" />
         </head>
         <body>
             <header class="cabecalho">
@@ -37,7 +38,51 @@
                 </ul>
             </header>
             <main class="conteudo-principal flex-centralizador">
-                <h1>Home</h1>
+                <section class="resumo-tarefas">
+                    <table>
+                        <caption>RESUMO TAREFAS</caption>
+                        <thead>
+                            <tr>
+                                <th>CONCLUIDAS</th>
+                                <th>PENDENTES</th>
+                                <th>ATRASADAS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>10</p>
+                                </td>
+                                <td>
+                                    <p>3</p>
+                                </td>
+                                <td>
+                                    <p>1</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="alerta-tarefas">
+                    <table>
+                        <caption>PROXIMAS TAREFAS</caption>
+                        <thead>
+                            <tr>
+                                <th>DATA</th>
+                                <th>HORARIO</th>
+                                <th>TAREFA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10/01/2022</td>
+                                <td>10:30</td>
+                                <td>COMPRAR PÃO</td>
+                                <td>VISUALIZAR</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
             </main>
             <footer class="rodape flex-centralizador">
                 <p>Desenvolvido por Evandro Barros</p>

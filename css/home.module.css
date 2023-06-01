@@ -1,0 +1,66 @@
+main{
+    flex-direction: column;
+}
+
+section{
+    width: 98%;
+    background-color: #fffdfdc3;
+}
+.resumo-tarefas{
+    height: 40%;
+    margin-bottom: 10px;
+}
+.resumo-tarefas table, .alerta-tarefas table{
+    width: 60%;
+    margin: 0 auto;
+}
+.resumo-tarefas table{
+    border-spacing: 10px;
+}
+.resumo-tarefas td{
+    color: #000000c9;
+    height: 10vh;
+    cursor: pointer;
+    font-size: 20pt;
+    text-align: center;
+    border-radius: 5em;
+}
+.resumo-tarefas td:nth-child(1){
+    background-color: rgba(21, 169, 68, 0.547);
+    border: 5px solid rgb(21, 169, 68);
+}
+.resumo-tarefas td:nth-child(2){
+    background-color: rgba(193, 191, 43, 0.547);
+    border: 5px  solid rgb(193, 191, 43);
+}
+.resumo-tarefas td:nth-child(3){
+    background-color: rgb(236, 56, 56, 0.547);
+    border: 5px solid rgb(236, 56, 56);
+}
+.resumo-tarefas caption, .alerta-tarefas caption{
+    padding: 5px;
+    color: #f1f1f1;
+    font-weight: 600;
+    margin-bottom: 5vh;
+    background-color: #0e569d;
+    box-shadow: 0px 2px 5px #000;
+}
+.alerta-tarefas{
+    height: 50%;
+}
+.alerta-tarefas table{
+    border-spacing: 0;
+}
+.alerta-tarefas td,.alerta-tarefas th{
+    padding: 5px;
+    text-align: left;
+}
+.alerta-tarefas td:last-child{
+    cursor: pointer;
+    color: #f1f1f1;
+    font-weight: 600;
+    text-align: center;
+    border-radius: .5em;   
+    box-shadow: 0px 1px 1px #000;
+    background-color: rgb(21, 169, 68) ;
+}
