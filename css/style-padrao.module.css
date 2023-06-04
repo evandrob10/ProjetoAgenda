@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 body{
+    font-size: 16pt;
     min-height: 100vh;
     /*Layout formatação*/
     display: grid;
@@ -34,6 +35,31 @@ body{
     align-items: center;
     flex-direction: column;
     justify-content: space-evenly;
+}
+.cabecalho ul li{
+    cursor: pointer;
+    position: relative;
+}
+.cabecalho ul li ol{
+    top: 10%;
+    left: 160%;
+    list-style: none;
+    position: absolute;
+}
+.cabecalho ul li ol li{
+    width: 15em;
+    padding: 10px;
+    color: #f1f1f1;
+    border: 1px solid;
+    margin-bottom: 5px;
+    border-radius: .3em;
+    background-color: #052e56;
+}
+.cabecalho ul li ol li:hover,.cabecalho ul li a img:hover,.cabecalho ul li div img:hover{
+    transform: scale(1.06);
+}
+.submenu-oculto{
+    display: none;
 }
 .conteudo-principal{
     grid-area: conteudo;

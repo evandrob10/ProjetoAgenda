@@ -6,6 +6,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <link rel="stylesheet" type="text/css" href="./css/style-padrao.module.css"/>
             <link rel="stylesheet" type="text/css" href="./css/home.module.css" />
+            <script src="./js/script-padrao.js" defer></script>
         </head>
         <body>
             <header class="cabecalho">
@@ -21,9 +22,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="./pages/agenda/">
+                        <div>
                             <img src="./img/icones/agenda.png" alt="agenda" title="AGENDA"/>
-                        </a>
+                            <ol class="submenu-oculto">
+                                <a href="./pages/agenda/pages/tarefas/"><li>ATIVIDADES</li></a>
+                                <a href="#"><li>CADASTRAR ATIVIDADES</li></a>
+                            </ol>
+                        </div>
                     </li>
                     <li>
                         <a href="./pages/perfil/" >
