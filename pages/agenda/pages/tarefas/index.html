@@ -1,0 +1,120 @@
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <title>Calendario</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" type="text/css" href="./css/agenda.module.css" />
+            <link rel="stylesheet" type="text/css" href="../../../../css/style-padrao.module.css"/>
+            <script src="../../../../js/script-padrao.js" defer></script>
+        </head>
+        <body>
+            <header class="cabecalho">
+                <ul>
+                    <li>
+                        <a href="../../../../">
+                            <img src="../../../../img/icones/botao-de-inicio.png" alt="INICIO" title="INICIO"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../calendario/">
+                            <img src="../../../../img/icones/calendario.png" alt="CALENDARIO" title="CALENDARIO"/>
+                        </a>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="../../../../img/icones/agenda.png" alt="AGENDA" title="AGENDA"/>
+                            <ol class="submenu-oculto">
+                                <a href="./index.html"><li>ATIVIDADES</li></a>
+                                <a href="../cadastro/index.html"><li>CADASTRAR ATIVIDADES</li></a>
+                            </ol>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="../../../perfil/" >
+                            <img src="../../../../img/icones/perfil-de-usuario.png" alt="PERFIL" title="PERFIL">
+                        </a>
+                    </li>
+                    <li id="botao-sair">
+                        <a href="#">
+                            <img src="../../../../img/icones/opcao-de-sair.png" alt="SAIR" title="SAIR">
+                        </a>
+                    </li>
+                </ul>
+            </header>
+            <main class="conteudo-principal flex-centralizador">
+                <section id="conteudo">
+                    <section id="central">
+                        <div id="central-tarefas">
+                            <h1>Central de Tarefas</h1>
+                            <div class="filtros">
+                                <div>
+                                    <div>
+                                        <p>DATA</p>
+                                        <select>
+                                            <option value="10/11/2023">10/11/2023</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <p>STATUS</p>
+                                        <select>
+                                            <option value="CONCLUIDO">CONCLUIDO</option>
+                                            <option value="PENDENTE">PENDENTE</option>
+                                            <option value="ATRASADOS">ATRASADOS</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <p>MOSTRAR</p>
+                                        <select>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="tarefas">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>DATA</th>
+                                    <th>HORARIO</th>
+                                    <th>NOME</th>
+                                    <th>DESCRIÇÃO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>10/11/2023</td>
+                                    <td>13:30</td>
+                                    <td>AUDIENCIA DO PROCON</td>
+                                    <td>AUDIO SOBRE TALS TALS TALS TALS TALS TALS</td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button">VER</button>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button">EDITAR</button>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button">EXCLUIR</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <section id="botoes-auxiliar">
+                        <div id="paginacao">
+                            <p>VOLTAR</p>
+                            <P>DEPOIS</P>
+                        </div>
+                    </section>
+                </section>
+            </main>
+            <footer class="rodape flex-centralizador">
+                <p>Desenvolvido por Evandro Barros</p>
+            </footer>
+        </body>
+    </html>
