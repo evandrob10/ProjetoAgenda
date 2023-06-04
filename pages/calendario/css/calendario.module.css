@@ -1,8 +1,12 @@
+main{
+    flex-wrap: wrap;
+}
 #calendario, #eventos-por-dia{
     height: 80%;
 }
 #calendario{
     width: 40%;
+    min-width: 400px;
     display: flex;
     margin-right: 5%;
     margin-left: 20px;

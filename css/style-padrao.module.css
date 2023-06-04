@@ -8,7 +8,6 @@ body{
     /*Layout formatação*/
     display: grid;
     grid-template-rows: 1fr 1fr  5vh;
-    grid-auto-rows: minmax(100vh , auto);
     grid-template-columns: .04fr 1fr;
     grid-template-areas: "menu conteudo"
                          "menu conteudo"
