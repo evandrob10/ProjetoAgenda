@@ -1,5 +1,4 @@
 let submenu = document.querySelectorAll(".cabecalho ul li div");
-
 submenu.forEach((Element)=>{
     Element.addEventListener("click",()=>{
         let item = Element.querySelector("ol");

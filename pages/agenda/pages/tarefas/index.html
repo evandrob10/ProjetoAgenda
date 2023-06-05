@@ -4,7 +4,7 @@
             <meta charset="utf-8" />
             <title>Calendario</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link rel="stylesheet" type="text/css" href="./css/agenda.module.css" />
+            <link rel="stylesheet" type="text/css" href="./css/atividades.module.css" />
             <link rel="stylesheet" type="text/css" href="../../../../css/style-padrao.module.css"/>
             <script src="../../../../js/script-padrao.js" defer></script>
         </head>
@@ -46,7 +46,7 @@
                 <section id="conteudo">
                     <section id="central">
                         <div id="central-tarefas">
-                            <h1>Central de Tarefas</h1>
+                            <h1>Central de Atividades</h1>
                             <div class="filtros">
                                 <div>
                                     <div>
@@ -72,11 +72,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="seach">
+                            <form action="">
+                                <input type="text" placeholder="Pesquisar...">
+                                <button type="submit">BUSCAR</button>
+                            </form>
+                        </div>
                     </section>
                     <section id="tarefas">
                         <table>
                             <thead>
                                 <tr>
+                                    <th>STATUS</th>
                                     <th>DATA</th>
                                     <th>HORARIO</th>
                                     <th>NOME</th>
@@ -85,6 +92,45 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>CONCLUIDO</td>
+                                    <td>10/11/2023</td>
+                                    <td>13:30</td>
+                                    <td>AUDIENCIA DO PROCON</td>
+                                    <td>AUDIO SOBRE TALS TALS TALS TALS TALS TALS</td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button">VER</button>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button">EDITAR</button>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button">EXCLUIR</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>CONCLUIDO</td>
+                                    <td>10/11/2023</td>
+                                    <td>13:30</td>
+                                    <td>AUDIENCIA DO PROCON</td>
+                                    <td>AUDIO SOBRE TALS TALS TALS TALS TALS TALS</td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button">VER</button>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button">EDITAR</button>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button">EXCLUIR</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>CONCLUIDO</td>
                                     <td>10/11/2023</td>
                                     <td>13:30</td>
                                     <td>AUDIENCIA DO PROCON</td>
