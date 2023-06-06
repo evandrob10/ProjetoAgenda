@@ -17,17 +17,23 @@ main{
     align-items: center;
 }
 #central .seach{
-    width: 50%;
+    width: 45%;
 }
 #central .seach form{
     display: flex;
     justify-content: end;
 }
 #central .seach form input{
-    width: 60%;
+    width: 30%;
     padding: 5px;
     font-size: 16pt;
     margin-right: 10px;
+}
+#central .seach form input:focus{
+    width: 60%;
+    border: none;
+    transition: 1.5s;
+    border-bottom: 1px solid;
 }
 #central .seach form button{
     font-weight: 600;
@@ -38,8 +44,16 @@ main{
 }
 #central-tarefas h1{
     font-size: 32pt;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-transform: uppercase;
+}
+#central-tarefas h1 strong{
+    padding: 5px;
+    color: #f1f1f1;
+    font-weight: 600;
+    margin-bottom: 5vh;
+    background-color: #0e569d;
+    box-shadow: 0px 2px 5px #000;
 }
 .filtros div{
     display: flex;
@@ -57,13 +71,13 @@ main{
     padding: 5px;
 }
 #tarefas table{
-    border-spacing: 0 20px;
     text-align: center;
+    border-spacing: 0 20px;
 }
 #tarefas thead tr th{
     color: #f1f1f1;
-    background-color: #0e569d;
     border-bottom: 5px solid;
+    background-color: #0e569d;
 }
 #tarefas button, #central .seach form button{
     border: none;
@@ -71,6 +85,10 @@ main{
     padding: 5px 10px;
     border-radius: .3em;
     box-shadow: 0px 1px 3px #000;
+    
+}
+#tarefas button:hover, #central .seach form button:hover{
+    transform: scale(1.1);
 }
 #tarefas table td, #tarefas table th{
     padding: 10px;
@@ -78,11 +96,34 @@ main{
 }
 #tarefas table tbody tr{
     text-align: center;
-    box-shadow: 0px 3px 2px #00000052;
+    box-shadow: 0px 2px 2px #00000052;
 }
 #botoes-auxiliar{
     margin-top: auto;
     text-align: center;
 }
-
-
+.paginacao-padrao{
+    display: inline;
+    cursor: pointer;
+    font-size: 20pt;
+    font-weight: 800;
+    color: #f1f1f1;
+    border-radius: 2em;
+    padding: 10px 20px;
+    margin-right: 1.5em;
+    background-color: #0e569d;
+}
+.paginacao-padrao:hover{
+    color: #000;
+    transition: 0.7s;
+    text-decoration: underline;
+    background-color: #d9e0e8e9;
+    box-shadow: 0px 0px 5px 2px #0e569d;
+}
+.paginacao-selecionada{
+    color: #000;
+    transition: 0.7s;
+    text-decoration: underline;
+    background-color: #d9e0e8e9;
+    box-shadow: 0px 0px 1px 1px #09233e;
+}
