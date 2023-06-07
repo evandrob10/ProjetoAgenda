@@ -1,0 +1,32 @@
+#formulario{
+    width: 40%;
+    height: 70%;
+    border: 1px solid;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#formulario table{
+    width: 95%;
+    border-spacing: 10px 30px;
+    
+}
+#formulario table input, #formulario table textarea{
+    padding: 5px;
+    font-size: 16pt;
+}
+#formulario table textarea{
+    height: 150px;
+}
+.formatacao-inputs-padrao{
+    width: 80%;
+}
+.td-label{
+    width: 20%;
+    text-align: right;
+}
+.status ,.descricao{
+    vertical-align: text-top;
+}

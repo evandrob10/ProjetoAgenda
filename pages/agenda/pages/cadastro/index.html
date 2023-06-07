@@ -4,7 +4,7 @@
             <meta charset="utf-8" />
             <title>Calendario</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link rel="stylesheet" type="text/css" href="./css/agenda.module.css" />
+            <link rel="stylesheet" type="text/css" href="./css/cadastro.module.css" />
             <link rel="stylesheet" type="text/css" href="../../../../css/style-padrao.module.css"/>
             <script src="../../../../js/script-padrao.js" defer></script>
         </head>
@@ -43,7 +43,70 @@
                 </ul>
             </header>
             <main class="conteudo-principal flex-centralizador">
-                <h1>CADASTRO</h1>
+                <form id="formulario">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="td-label">
+                                    <label>ASSUNTO:</label>
+                                </td>
+                                <td>
+                                    <input class="formatacao-inputs-padrao" type="text" placeholder="Digite aqui..." required/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-label">
+                                    <label>DATA:</label>
+                                </td>
+                                <td>
+                                    <input type="date" required/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-label">
+                                    <label>HORARIO:</label>
+                                </td>
+                                <td>
+                                    <input type="time" required/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-label status">
+                                    <label>STATUS:</label>
+                                </td>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <input type="radio" id="concluido" name="status" required/>
+                                            <label for="concluido">CONCLUIDO</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="pendente" name="status" required/>
+                                            <label for="pendente">PENDENTE</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="atrasados" name="status" required/>
+                                            <label for="atrasados">ATRASADOS</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-label descricao">
+                                    <label>DESCRIÇÃO:</label>
+                                </td>
+                                <td >
+                                    <textarea class="formatacao-inputs-padrao"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button type="button">LIMPAR</button>
+                        <button type="submit">SALVAR</button> 
+                        <button type="button">CANCELAR</button>
+                    </div>
+                </form>
             </main>
             <footer class="rodape flex-centralizador">
                 <p>Desenvolvido por Evandro Barros</p>
