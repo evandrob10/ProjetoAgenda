@@ -1,21 +1,24 @@
 #formulario{
     width: 40%;
-    height: 70%;
+    height: 80%;
     border: 1px solid;
 
     display: flex;
+    border-radius: .2em;
     align-items: center;
     flex-direction: column;
+    background-color: #0e569d;
     justify-content: space-evenly;
 }
 #formulario table{
     width: 95%;
-    border-spacing: 10px 30px;
-    
+    color: #f1f1f1;
+    border-spacing: 10px 30px;  
 }
 #formulario table input, #formulario table textarea{
     padding: 5px;
     font-size: 16pt;
+    border-radius: .2em;
 }
 #formulario table textarea{
     height: 150px;
@@ -29,4 +32,20 @@
 }
 .status ,.descricao{
     vertical-align: text-top;
+}
+.botoes{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+.botoes button{
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: .3em;
+    box-shadow: 0px 1px 3px #000;
+}
+.botoes button:hover{
+    transform: scale(1.1);
 }
