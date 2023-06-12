@@ -4,10 +4,10 @@ let dadoTextarea = document.querySelector("#formulario textarea");
     function (){
     const dadosForm = () =>{
         return{
-            assunto: dados[0].value,
+            status: "pendente",
             data: dados[1].value,
             horario: dados[2].value,
-            status: "pendente",
+            assunto: dados[0].value,
             descricao: dadoTextarea.value,  
             validacao: {
                 status: false,
@@ -32,9 +32,21 @@ let dadoTextarea = document.querySelector("#formulario textarea");
                 }
             }
         }
+        dadosAtividade = tratarDados(dadosAtividade);
         dadosAtividade.validacao.status = true;
         dadosAtividade.validacao.messagem = `Atividade cadastrada com sucesso! `;
         return dadosAtividade;
+    }
+    const tratarDados = dadosAtividades => {
+        let zeroAesquerda = num => num < 10 ? `0${num}` : num;
+        for(let dados in dadosAtividades){
+            if(dados === "assunto" || dados === "descricao" || dados === "status") dadosAtividades[dados] = dadosAtividades[dados].toUpperCase();
+            if(dados === "data"){
+                let newData = new Date(dadosAtividades[dados]);
+                dadosAtividades[dados] = `${zeroAesquerda(newData.getDate())}/${zeroAesquerda(newData.getMonth())}/${newData.getFullYear()}`;
+            } 
+        }
+        return dadosAtividades;
     }
     const mostrarMensagemResultado = (dadosAtividade)=> {
         let resultado = document.querySelector(".campo-resultado p");
@@ -76,4 +88,3 @@ let dadoTextarea = document.querySelector("#formulario textarea");
     let botaoCancelar = document.querySelector("#cancelar");
     botaoCancelar.addEventListener("click",()=> document.location = "../tarefas/");
 })();
-
