@@ -18,6 +18,7 @@ botaoSalvar.addEventListener("click",(element)=> {
     element.preventDefault();
     let dadosAtividades = dadosForm();
     dadosAtividades = validarDadosEntrada(dadosAtividades);
+    if(dadosAtividades.validacao.status) salvarDados(dadosAtividades);
     mostrarMensagemResultado(dadosAtividades)
 });
 const validarDadosEntrada = (dadosAtividade)=>{
@@ -34,21 +35,31 @@ const validarDadosEntrada = (dadosAtividade)=>{
     return dadosAtividade;
 }
 const mostrarMensagemResultado = (dadosAtividade)=> {
-    let campoResultado = document.querySelector(".resultado p");
-    campoResultado.innerText = dadosAtividade.validacao.messagem;
-    if(dadosAtividade.validacao.status){
-        let count = 5;
-        let mensagemRedirecionamento = setInterval(()=>{
-            campoResultado.innerText = `Redirecionando em ${count}...`;
-            count--;
-        },1000)  
-        setTimeout(()=>{
-            clearInterval(mensagemRedirecionamento);
-            document.location.href = "../../pages/tarefas/";
-        },6000)
-    }
+    let resultado = document.querySelector(".campo-resultado p");
+    let campoResultado = document.querySelector(".fundo-resultado");
+    let botaoResultado = campoResultado.querySelector("button");
+    resultado.innerText = dadosAtividade.validacao.messagem;
+    campoResultado.style.display = "flex";
+    botaoResultado.addEventListener("click",()=>{
+        campoResultado.style.display = "none";
+        if(dadosAtividade.validacao.status) document.location.href = "../../pages/tarefas/";
+    })
 }
-
+const salvarDados = (dadosAtividade)=>{
+    for(let dados in dadosAtividade){
+        if(dadosAtividade[dados] === "") dadosAtividade[dados] = null;
+    }
+    let id = 0;
+    let dadosSalvo = true;
+    do{
+        if(!localStorage.getItem(`${id}`)){
+            localStorage.setItem(`${id}`,JSON.stringify(dadosAtividade));
+            dadosSalvo = false;
+            console.log("Executado");
+        }
+        id++;
+    }while(dadosSalvo);
+}
 
 
 
