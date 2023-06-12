@@ -1,8 +1,8 @@
+let dados = document.querySelectorAll("#formulario input");
+let dadoTextarea = document.querySelector("#formulario textarea");
 ( 
     function (){
     const dadosForm = () =>{
-        let dados = document.querySelectorAll("#formulario input");
-        let dadoTextarea = document.querySelector("#formulario textarea");
         return{
             assunto: dados[0].value,
             data: dados[1].value,
@@ -15,7 +15,7 @@
             } 
         }
     }
-    let botaoSalvar = document.querySelector("button[type='submit']");
+    let botaoSalvar = document.querySelector("#salvar");
     botaoSalvar.addEventListener("click",(element)=> {
         element.preventDefault();
         let dadosAtividades = dadosForm();
@@ -63,5 +63,17 @@
         }while(dadosSalvo);
     }
 })();
-
+(function(){
+    let botaoLimpar = document.querySelector("#limpar");
+    botaoLimpar.addEventListener("click",()=>{
+        for(let dado of dados){
+            dado.value = "";
+        }
+        dadoTextarea.value = "";
+    })
+})();
+(function (){
+    let botaoCancelar = document.querySelector("#cancelar");
+    botaoCancelar.addEventListener("click",()=> document.location = "../tarefas/");
+})();
 
