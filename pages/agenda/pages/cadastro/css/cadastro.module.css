@@ -38,7 +38,7 @@
     display: flex;
     justify-content: space-between;
 }
-.botoes button{
+.botoes button , .campo-resultado button{
     border: none;
     cursor: pointer;
     font-weight: 700;
@@ -48,4 +48,44 @@
 }
 .botoes button:hover{
     transform: scale(1.1);
+}
+
+.fundo-resultado, .campo-resultado div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fundo-resultado{
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: #0000007f;
+}
+.campo-resultado{
+    width: 400px;
+    height: 150px;
+    color: #f1f1f1;
+    border-radius: .2em;
+    background-color: #0e569df4;
+    box-shadow: 0px 0px 2px #2577c8;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}
+.campo-resultado div{
+    width: 100%;
+    height: 70%;
+    padding: 10px;
+}
+.campo-resultado button{
+    margin-right: 20px;
+    margin-bottom: 15px;
+}
+.ocultar-campo-resultado{
+    display: none;
 }
