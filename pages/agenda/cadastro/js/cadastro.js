@@ -61,7 +61,7 @@ let dadoTextarea = document.querySelector("#formulario textarea");
     }
     const salvarDados = (dadosAtividade)=>{
         for(let dados in dadosAtividade){
-            if(dadosAtividade[dados] === "") dadosAtividade[dados] = null;
+            if(dadosAtividade[dados] === "") dadosAtividade[dados] = "-";
         }
         let id = 0;
         let dadosSalvo = true;

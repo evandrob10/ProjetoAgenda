@@ -7,7 +7,7 @@
             <link rel="stylesheet" type="text/css" href="./css/cadastro.module.css" />
             <link rel="stylesheet" type="text/css" href="../../../../css/style-padrao.module.css"/>
             <script src="../../../../js/script-padrao.js" defer></script>
-            <script src="./js/cadastro.js" defer></script>
+            <script src="./js/atividade.js" defer></script>
         </head>
         <body>
             <header class="cabecalho">
@@ -26,7 +26,7 @@
                         <div>
                             <img src="../../../../img/icones/agenda.png" alt="AGENDA" title="AGENDA"/>
                             <ol class="submenu-oculto">
-                                <a href="../tarefas/index.html"><li>ATIVIDADES</li></a>
+                                <a href="../index.html"><li>ATIVIDADES</li></a>
                                 <a href="./index.html"><li>CADASTRAR ATIVIDADES</li></a>
                             </ol>
                         </div>
@@ -60,7 +60,7 @@
                                     <label>DATA:</label>
                                 </td>
                                 <td>
-                                    <input type="date" required/>
+                                    <input type="date" required />
                                 </td>
                             </tr>
                             <tr>
@@ -82,7 +82,7 @@
                                             <label for="concluido">CONCLUIDO</label>
                                         </div>
                                         <div>
-                                            <input type="radio" id="pendente" name="status" value="pendente" required/>
+                                            <input type="radio" id="pendente" name="status" value="pendente" checked required/>
                                             <label for="pendente">PENDENTE</label>
                                         </div>
                                         <div>
@@ -102,10 +102,14 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="botoes">
+                    <div class="botoes" style="display: none;">
                         <button type="button">LIMPAR</button>
-                        <button type="submit">SALVAR</button> 
+                        <button type="submit">ATUALIZAR</button> 
                         <button type="button">CANCELAR</button>
+                    </div>
+                    <div class="botoes">
+                        <button type="button" id="voltar">VOLTAR</button>
+                        <button type="submit" id="alterar">ALTERAR</button>
                     </div>
                     <div class="fundo-resultado" style="display: none;">
                         <div class="campo-resultado">

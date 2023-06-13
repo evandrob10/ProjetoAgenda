@@ -37,6 +37,7 @@ let atividades = {};
             let botao = document.createElement("button");
             let textoBotao = document.createTextNode(texto);
             botao.setAttribute("type","button");
+            botao.setAttribute("class",texto);
             botao.appendChild(textoBotao);
             return botao;
         }
@@ -60,9 +61,34 @@ let atividades = {};
             tabelaTarefas.appendChild(criarTds());
         }
     }
-    let linhas = [];
-    for(let atividade in atividades){
-        if(atividades[0] !== null) linhas[atividade]  = new CriarElementos(atividade,atividades[atividade]);
+    let carregarAtividades = () =>{
+        let campoVazio = document.querySelector("#sem-registro");
+        if(atividades){
+            let linhas = [];
+            for(let atividade in atividades) linhas[atividade]  = new CriarElementos(atividade,atividades[atividade]);
+            linhas.forEach(elementos => elementos.mostrarAtividade());
+        }else{
+            campoVazio.removeAttribute("style");
+        }
     }
-    linhas.forEach(elementos=> elementos.mostrarAtividade())
+    carregarAtividades();
+})();
+let botoes = document.querySelectorAll("button");
+(function(){
+    botoes.forEach(botao =>{
+        if(botao.getAttribute("class") === "VER") botao.addEventListener("click",()=> mostrarAtividade(botao));
+        if(botao.getAttribute("class") === "EDITAR") botao.addEventListener("click",()=> editarAtividade(botao));  
+        if(botao.getAttribute("class") === "EXCLUIR") botao.addEventListener("click",()=> removerAtividade(botao));      
+    })
+    let mostrarAtividade = botao => document.location.href = `./atividade/index.html?id=${idLinha(botao)}`;
+    let editarAtividade = botao => document.location.href =  `./atividade/index.html?id=${idLinha(botao)}`;
+    let removerAtividade = botao =>{
+        localStorage.removeItem(idLinha(botao));
+        document.location.reload();
+    }
+    let idLinha = botao =>{
+        let tr = botao.parentNode.parentNode;
+        let idAtividade = tr.getAttribute("id");
+        return idAtividade;
+    }
 })();
