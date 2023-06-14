@@ -1,10 +1,10 @@
 let atividades = {};
 ( function(){
-    let id = 0;
-    do{
-        atividades[id] = JSON.parse(localStorage.getItem(id));
-        id++;
-    }while(localStorage.getItem(id));
+    for(let i = 0; i <= localStorage.length;i++){
+        if(JSON.parse(localStorage.getItem(i))){
+            atividades[i] = (JSON.parse(localStorage.getItem(i)));
+        }
+    };
 })();
 (function(){
     function CriarElementos(id,atividade){
@@ -51,9 +51,7 @@ let atividades = {};
                     newLinha.appendChild(td);
                 }
             }
-            for(let botao of criarBotoes()){
-                newLinha.appendChild(botao);
-            }
+            for(let botao of criarBotoes()) newLinha.appendChild(botao);
             return newLinha;
         }
         this.mostrarAtividade = () =>{
@@ -62,12 +60,12 @@ let atividades = {};
         }
     }
     let carregarAtividades = () =>{
-        let campoVazio = document.querySelector("#sem-registro");
-        if(atividades){
+        if(Object.keys(atividades).length){
             let linhas = [];
             for(let atividade in atividades) linhas[atividade]  = new CriarElementos(atividade,atividades[atividade]);
             linhas.forEach(elementos => elementos.mostrarAtividade());
         }else{
+            let campoVazio = document.querySelector("#sem-registro");
             campoVazio.removeAttribute("style");
         }
     }
@@ -81,7 +79,7 @@ let botoes = document.querySelectorAll("button");
         if(botao.getAttribute("class") === "EXCLUIR") botao.addEventListener("click",()=> removerAtividade(botao));      
     })
     let mostrarAtividade = botao => document.location.href = `./atividade/index.html?id=${idLinha(botao)}`;
-    let editarAtividade = botao => document.location.href =  `./atividade/index.html?id=${idLinha(botao)}`;
+    let editarAtividade = botao => document.location.href =  `./atividade/index.html?id=${idLinha(botao)}&edit`;
     let removerAtividade = botao =>{
         localStorage.removeItem(idLinha(botao));
         document.location.reload();
