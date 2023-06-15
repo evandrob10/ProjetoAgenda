@@ -38,13 +38,8 @@ let dadoTextarea = document.querySelector("#formulario textarea");
         return dadosAtividade;
     }
     const tratarDados = dadosAtividades => {
-        let zeroAesquerda = num => num < 10 ? `0${num}` : num;
         for(let dados in dadosAtividades){
             if(dados === "assunto" || dados === "descricao" || dados === "status") dadosAtividades[dados] = dadosAtividades[dados].toUpperCase();
-            if(dados === "data"){
-                let newData = new Date(dadosAtividades[dados]);
-                dadosAtividades[dados] = `${zeroAesquerda(newData.getDate())}/${zeroAesquerda(newData.getMonth())}/${newData.getFullYear()}`;
-            } 
         }
         return dadosAtividades;
     }

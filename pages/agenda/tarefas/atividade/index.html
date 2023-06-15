@@ -26,8 +26,8 @@
                         <div>
                             <img src="../../../../img/icones/agenda.png" alt="AGENDA" title="AGENDA"/>
                             <ol class="submenu-oculto">
-                                <a href="../index.html"><li>ATIVIDADES</li></a>
-                                <a href="./index.html"><li>CADASTRAR ATIVIDADES</li></a>
+                                <a href="../"><li>ATIVIDADES</li></a>
+                                <a href="../../cadastro/"><li>CADASTRAR ATIVIDADES</li></a>
                             </ol>
                         </div>
                     </li>
@@ -76,13 +76,13 @@
                                     <label>STATUS:</label>
                                 </td>
                                 <td>
-                                    <div>
+                                    <div id="status">
                                         <div>
                                             <input type="radio" id="concluido" name="status" value="concluido" required/>
                                             <label for="concluido">CONCLUIDO</label>
                                         </div>
                                         <div>
-                                            <input type="radio" id="pendente" name="status" value="pendente" checked required/>
+                                            <input type="radio" id="pendente" name="status" value="pendente" required checked/>
                                             <label for="pendente">PENDENTE</label>
                                         </div>
                                         <div>
@@ -102,14 +102,14 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="botoes" style="display: none;">
-                        <button type="button">LIMPAR</button>
-                        <button type="submit">ATUALIZAR</button> 
-                        <button type="button">CANCELAR</button>
+                    <div class="botoes botoes-edit" style="display: none;">
+                        <button type="button" id="limpar">LIMPAR</button>
+                        <button type="button" id="atualizar">ATUALIZAR</button> 
+                        <button type="button" id="cancelar">CANCELAR</button>
                     </div>
-                    <div class="botoes">
+                    <div class="botoes botoes-ver">
                         <button type="button" id="voltar">VOLTAR</button>
-                        <button type="submit" id="alterar">ALTERAR</button>
+                        <button type="button" id="alterar">ALTERAR</button>
                     </div>
                     <div class="fundo-resultado" style="display: none;">
                         <div class="campo-resultado">

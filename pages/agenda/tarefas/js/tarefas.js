@@ -46,7 +46,11 @@ let atividades = {};
             for(let conteudo in atividade){
                 if(conteudo !== "validacao"){
                     let td = document.createElement("td");
-                    let conteudoTd = document.createTextNode(atividade[conteudo]);
+                    if(conteudo === "data"){
+                        let dataFormatada = atividade[conteudo].split("-");
+                        atividade[conteudo] = `${dataFormatada[2]}/${dataFormatada[1]}/${dataFormatada[0]}`;
+                    }
+                    let conteudoTd = document.createTextNode(atividade[conteudo].toUpperCase());
                     td.appendChild(conteudoTd);
                     newLinha.appendChild(td);
                 }
