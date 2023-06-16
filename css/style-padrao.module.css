@@ -66,10 +66,6 @@ body{
 .rodape p{
     color: #f1f1f1;
 }
-/*Break point - smaller smartphones*/
-@media (min-width: 481px){
-
-}
 /*Break point - Laptops, larger tablets in landscap,and small desktops*/
 @media ( min-width: 769px ){
     body{

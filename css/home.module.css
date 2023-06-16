@@ -1,8 +1,10 @@
 main{
+    height: 90vh;
     flex-direction: column;
 }
 section{
     width: 98%;
+    max-width: 1280px;
     background-color: #fffdfdc3;
 }
 .resumo-tarefas{
@@ -10,19 +12,20 @@ section{
     margin-bottom: 10px;
 }
 .resumo-tarefas table, .alerta-tarefas table{
-    width: 60%;
+    width: 90%;
     margin: 0 auto;
 }
 .resumo-tarefas table{
     border-spacing: 10px;
 }
 .resumo-tarefas td{
-    color: #000000c9;
     height: 10vh;
     cursor: pointer;
-    font-size: 20pt;
+    font-size: 12pt;
+    font-weight: 600;
     text-align: center;
     border-radius: 5em;
+    color: #000000c9;
 }
 .resumo-tarefas td:nth-child(1){
     background-color: rgba(21, 169, 68, 0.547);
@@ -54,12 +57,33 @@ section{
     padding: 5px;
     text-align: left;
 }
-.alerta-tarefas td:last-child{
+.alerta-tarefas td:last-child button{
+    border: none;
     cursor: pointer;
-    color: #f1f1f1;
+    font-size: 12pt;
+    color:#f1f1f1;
     font-weight: 600;
+    padding: 5px 10px; 
     text-align: center;
-    border-radius: .5em;   
+    border-radius: .5em;  
     box-shadow: 0px 1px 1px #000;
     background-color: rgb(21, 169, 68) ;
+}
+.alerta-tarefas td:last-child button:hover{
+    transform: scale(1.1);
+}
+.ocultar-item-desktop{
+    display: none;
+}
+/*Laptops, larger tablets in landscape, and small desktops */
+@media (min-width: 769px){
+    .resumo-tarefas td{
+        font-size: 18pt;
+    }
+    .alerta-tarefas td:last-child button{
+        font-size: 15pt;
+    }
+    .ocultar-item-desktop{
+        display: block;
+    }
 }
