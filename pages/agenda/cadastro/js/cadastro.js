@@ -39,7 +39,7 @@ let dadoTextarea = document.querySelector("#formulario textarea");
     }
     const tratarDados = dadosAtividades => {
         for(let dados in dadosAtividades){
-            if(dados === "assunto" || dados === "descricao" || dados === "status") dadosAtividades[dados] = dadosAtividades[dados].toUpperCase();
+            if(dados === "assunto" || dados === "descricao") dadosAtividades[dados] = dadosAtividades[dados].toUpperCase();
         }
         return dadosAtividades;
     }

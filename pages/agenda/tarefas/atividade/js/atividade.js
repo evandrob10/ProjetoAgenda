@@ -100,7 +100,7 @@ let idParametro = () => idAtividade.indexOf("&") === -1 ? idAtividade.slice((idA
 // Botao atualizar
 (function(){
     let botaoAtualizar = document.querySelector("#atualizar");
-    let status = "PENDENTE";
+    let status = "pendente";
     let botoesStatus = document.querySelectorAll("input[name='status']");
     botoesStatus.forEach((botao)=>{
         botao.addEventListener("click",()=>{
