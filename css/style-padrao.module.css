@@ -4,73 +4,110 @@
     box-sizing: border-box;
 }
 body{
-    font-size: 16pt;
+    font-size: 12pt;
     min-height: 100vh;
+
     /*Layout formatação*/
-    display: grid;
-    grid-template-rows: 1fr 1fr  5vh;
-    grid-template-columns: .04fr 1fr;
-    grid-template-areas: "menu conteudo"
-                         "menu conteudo"
-                         "rodape rodape";    
-}
-.flex-centralizador{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .cabecalho{
-    z-index: 1;
-    grid-area: menu;
+    min-height: 7vh;
     background-color: #052e56;
 }
-.cabecalho img{
-    width: 40px;
-}
 .cabecalho ul{
-    height: 100%;
-    padding: 10px;
+    width: 100%;
+    height: 7vh;
     display: flex;
     list-style: none;
     align-items: center;
-    flex-direction: column;
     justify-content: space-evenly;
 }
 .cabecalho ul li{
     cursor: pointer;
     position: relative;
 }
-.cabecalho ul li ol{
-    top: 10%;
-    left: 170%;
+.cabecalho ul li div ol{
+    top: 150%;
     list-style: none;
     position: absolute;
 }
-.cabecalho ul li ol li{
-    width: 15em;
-    padding: 10px;
+.cabecalho ul li div a{
     color: #f1f1f1;
-    border: 1px solid;
-    margin-bottom: 5px;
-    border-radius: .3em;
+    text-decoration: none;
+}
+.cabecalho ul li div ol li{
+    padding: 3px;
+    width: 50vw;
+    max-width: 210px;
+    margin-bottom: 6px;
     background-color: #052e56;
 }
 .cabecalho ul li ol li:hover,.cabecalho ul li a img:hover,.cabecalho ul li div img:hover{
     transform: scale(1.06);
 }
+.cabecalho img{
+    width: 30px;
+}
 .submenu-oculto{
     display: none;
 }
-.conteudo-principal{
-    grid-area: conteudo;
-    background-color: #FFFFFF;
+.flex-centralizador{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
 .rodape{
     z-index: 2;
-    grid-area: rodape;
+    padding: 5px;
     background-color: #052e56;
 }
 .rodape p{
     color: #f1f1f1;
 }
+/*Break point - smaller smartphones*/
+@media (min-width: 481px){
+
+}
+/*Break point - Laptops, larger tablets in landscap,and small desktops*/
+@media ( min-width: 769px ){
+    body{
+        font-size: 14pt;
+        /*Layout formatação*/
+        display: grid;
+        grid-template-rows: 1fr 1fr  5vh;
+        grid-template-columns: .04fr 1fr;
+        grid-template-areas: "menu conteudo"
+                             "menu conteudo"
+                             "rodape rodape";    
+    }
+    .cabecalho{
+        grid-area: menu;
+    }
+    .cabecalho img{
+        width: 30px;
+    }
+    .cabecalho ul{
+        height: 100%;
+        padding: 10px;
+        flex-direction: column;
+    }
+    .cabecalho ul li div ol{
+        top: 10%;
+        left: 170%;
+        font-size: 14pt;
+    }
+    .cabecalho ul li div ol li{
+        padding: 5px;
+        max-width: 310px;
+        margin-bottom: 5px;
+    }
+    .conteudo-principal{
+        grid-area: conteudo;
+    }
+    .rodape{
+        grid-area: rodape;
+    }
+}
+
