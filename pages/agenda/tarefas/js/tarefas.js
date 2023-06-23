@@ -99,4 +99,14 @@ let botoes = document.querySelectorAll("button");
         let idAtividade = tr.getAttribute("id");
         return idAtividade;
     }
+    let checkBoxStatus = document.querySelectorAll("#tarefas input[type='checkBox']");
+    checkBoxStatus.forEach((checkBox)=>{
+        let dadosAtividade = JSON.parse(localStorage.getItem(checkBox.getAttribute("id")));
+        checkBox.addEventListener("click",()=>{
+            dadosAtividade.status === "concluido" ? dadosAtividade.status = "pendente" : dadosAtividade.status = "concluido";
+            localStorage.setItem(checkBox.getAttribute("id"),JSON.stringify(dadosAtividade));
+        })
+        dadosAtividade.status === "concluido" ? checkBox.setAttribute("checked","") : checkBox.removeAttribute("checked");
+    })
+
 })();
