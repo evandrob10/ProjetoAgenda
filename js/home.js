@@ -95,6 +95,4 @@
             document.location.href = `./pages/agenda/tarefas/atividade/index.html?id=${button.getAttribute("id")}`;
         })
     })
-        
-
 })();
