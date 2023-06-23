@@ -1,10 +1,8 @@
 let atividades = {};
 ( function(){
-    for(let i = 0; i <= localStorage.length;i++){
-        if(JSON.parse(localStorage.getItem(i))){
-            atividades[i] = (JSON.parse(localStorage.getItem(i)));
-        }
-    };
+    Object.keys(localStorage).map((atividade)=>{
+        atividades[atividade] = (JSON.parse(localStorage.getItem(atividade)));
+    })
 })();
 (function(){
     function CriarElementos(id,atividade){
@@ -44,7 +42,7 @@ let atividades = {};
         let criarTds = ()=>{
             let newLinha = criarLinha();
             for(let conteudo in atividade){
-                if(conteudo !== "validacao"){
+                if(conteudo !== "validacao" && conteudo != "id"){
                     let td = document.createElement("td");
                     if(conteudo === "data"){
                         let dataFormatada = atividade[conteudo].split("-");

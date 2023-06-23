@@ -21,7 +21,7 @@ let dadoTextarea = document.querySelector("#formulario textarea");
         let dadosAtividades = dadosForm();
         dadosAtividades = validarDadosEntrada(dadosAtividades);
         if(dadosAtividades.validacao.status) salvarDados(dadosAtividades);
-        mostrarMensagemResultado(dadosAtividades)
+        if(dadosAtividades.validacao.status) mostrarMensagemResultado(dadosAtividades)
     });
     const validarDadosEntrada = (dadosAtividade)=>{
         for(let dado in dadosAtividade){
@@ -32,16 +32,9 @@ let dadoTextarea = document.querySelector("#formulario textarea");
                 }
             }
         }
-        dadosAtividade = tratarDados(dadosAtividade);
         dadosAtividade.validacao.status = true;
         dadosAtividade.validacao.messagem = `Atividade cadastrada com sucesso! `;
         return dadosAtividade;
-    }
-    const tratarDados = dadosAtividades => {
-        for(let dados in dadosAtividades){
-            if(dados === "assunto" || dados === "descricao") dadosAtividades[dados] = dadosAtividades[dados].toUpperCase();
-        }
-        return dadosAtividades;
     }
     const mostrarMensagemResultado = (dadosAtividade)=> {
         let resultado = document.querySelector(".campo-resultado p");
@@ -55,16 +48,14 @@ let dadoTextarea = document.querySelector("#formulario textarea");
         })
     }
     const salvarDados = (dadosAtividade)=>{
-        for(let dados in dadosAtividade){
-            if(dadosAtividade[dados] === "") dadosAtividade[dados] = "-";
-        }
+        for(let dados in dadosAtividade) if(dadosAtividade[dados] === "") dadosAtividade[dados] = "-";
         let id = 0;
         let dadosSalvo = true;
         do{
             if(!localStorage.getItem(`${id}`)){
+                dadosAtividade.id = id;
                 localStorage.setItem(`${id}`,JSON.stringify(dadosAtividade));
                 dadosSalvo = false;
-                console.log("Executado");
             }
             id++;
         }while(dadosSalvo);

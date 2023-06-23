@@ -80,7 +80,6 @@ let idParametro = () => idAtividade.indexOf("&") === -1 ? idAtividade.slice((idA
 })();
 //Botões tela editar atividade
 (function(){
-    console.log('entrei');
     let botaoLimpar = () => {
         let botao = document.querySelector("#limpar");
         botao.addEventListener("click",()=>{
