@@ -92,7 +92,7 @@
     let buttons = document.querySelectorAll(".alerta-tarefas button");
     buttons.forEach((button)=>{
         button.addEventListener("click",()=>{
-            document.location.href = `../pages/agenda/tarefas/atividade/index.html?id=${button.getAttribute("id")}`;
+            document.location.href = `./pages/agenda/tarefas/atividade/index.html?id=${button.getAttribute("id")}`;
         })
     })
         
