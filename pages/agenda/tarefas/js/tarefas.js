@@ -44,12 +44,20 @@ let atividades = {};
             for(let conteudo in atividade){
                 if(conteudo !== "validacao" && conteudo != "id"){
                     let td = document.createElement("td");
+                    let conteudoTd;
                     if(conteudo === "data"){
                         let dataFormatada = atividade[conteudo].split("-");
                         atividade[conteudo] = `${dataFormatada[2]}/${dataFormatada[1]}/${dataFormatada[0]}`;
                     }
-                    let conteudoTd = document.createTextNode(atividade[conteudo].toUpperCase());
-                    td.appendChild(conteudoTd);
+                    if(conteudo === "status"){
+                        let status = document.createElement("input");
+                        status.setAttribute("type","checkBox");
+                        status.setAttribute("id",atividade["id"]);
+                        td.appendChild(status);
+                    }else{
+                        conteudoTd = document.createTextNode(atividade[conteudo].toUpperCase());
+                        td.appendChild(conteudoTd);
+                    }
                     newLinha.appendChild(td);
                 }
             }
