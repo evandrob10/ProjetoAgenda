@@ -1,9 +1,8 @@
 let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOSTO","SETEMBRO","OUTUBRO","NOVEMBRO","DEZEMBRO"];
 
 (function(){
-
+    let dataAtual = new Date();
     let selects = document.querySelectorAll("#calendario thead select");
-
     let carregarMesesSelect = meses => {
         let selectMeses = selects[0];
         meses.forEach((mes,id)=>{
@@ -11,15 +10,22 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
             selectMeses.appendChild(option);
         })
     }
-    let criarOptionSelect = (mes,id) =>{
-        let dataAtual = new Date();
+    let criarOptionSelect = (item,id) =>{
         let option = document.createElement("option");
-        option.innerText = mes;
-        if(id === dataAtual.getMonth()) option.setAttribute("selected","");
-        option.setAttribute("value", mes);
+        option.innerText = item;
+        if(id === dataAtual.getMonth() || item === dataAtual.getFullYear()) option.setAttribute("selected","");
+        option.setAttribute("value", item);
         return option;
     }
     carregarMesesSelect(meses);
+    let  carregarAnosSelect = () => {
+        //Serão listado ultimos 10 anos e os proximos 10 anos do calendario virgente.
+        let selectAnos = selects[1];
+        let anoAtual = dataAtual.getFullYear();
+        for(let i = 1; i <= 20;i++) selectAnos.appendChild(criarOptionSelect(((anoAtual + 11)  - i)));
+    }
+
+    carregarAnosSelect();
 
     let mes = 4;
     let ano = 2023;
