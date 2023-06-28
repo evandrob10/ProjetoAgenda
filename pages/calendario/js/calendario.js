@@ -24,11 +24,48 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         let anoAtual = dataAtual.getFullYear();
         for(let i = 1; i <= 20;i++) selectAnos.appendChild(criarOptionSelect(((anoAtual + 11)  - i)));
     }
-    carregarAnosSelect();
-    let mes = 4;
-    let ano = 2023;
-    let datas = [];
-    for(let i = 0; i < 32;i++) datas.push(new Date(`${ano}-${mes}-${i}`));
-    datas.push(new Date(`${ano}-${mes + 1}-${1}`));
-    let dataValidas = datas.filter( data =>  (data.getMonth() + 1) === mes)
+    carregarAnosSelect();    
+    selects.forEach((select)=>{
+        select.addEventListener("change",()=> {
+            let selectMes = selects[0].value;
+            let selectAno = Number (selects[1].value);
+            for(let mes in meses) if(meses[mes] === selectMes) selectMes = Number(mes) + 1;
+            numeroValidos(selectMes,selectAno);
+        });
+    })
+    let numeroValidos = (mes,ano)=>{
+        let datas = [{}];
+        for(let i = 0; i < 32;i++) {
+            datas[0][i] = {date: new Date(`${ano}-${mes}-${i}`),display:false};
+        };
+        let numeroValidos = datas.filter( data => data);
+        return numeroValidos;
+    }
+    let criarTd = conteudo =>{
+        let td = document.createElement("td");
+        td.innerText = conteudo;
+        return td;
+    } 
+    let criarLinha = ()=>{
+        let linha = document.createElement("tr");
+        return linha;
+    }
+    let atualizarNumerosCalendario = (mes,ano) => {
+        let linhas = [];
+        for(let i = 0; i < 7;i++){
+            let linha = criarLinha();
+            let count = 0;
+            for(let data in numeroValidos(mes,ano)[0]){
+                if(!numeroValidos(mes,ano)[0][data].display && count <= 7){
+                    linha.appendChild(criarTd(numeroValidos(mes,ano)[0][data].date.getDate()));
+                    numeroValidos(mes,ano)[0][data].display = true;
+                    count++;
+                }
+                console.log("executado");
+            }
+            linhas[i] = linha;
+        }
+        console.log(linhas);
+    }
+    atualizarNumerosCalendario();
 })();
