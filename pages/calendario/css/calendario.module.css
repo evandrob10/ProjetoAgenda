@@ -28,14 +28,20 @@ main{
     flex-direction: column;
     justify-content: space-between;
 }
-#calendario th select{
-    width: 80%;
+#calendario select{
+    width: 42%;
     border: none;
     padding: 10px;
     margin: 20px 0;
     font-weight: 600;
     text-align: center;
     border: 2px solid #f1f1f1;
+}
+#filtro-calendario{
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
 }
 #calendario caption{
     padding: 10px;

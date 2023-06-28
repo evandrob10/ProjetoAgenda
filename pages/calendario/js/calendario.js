@@ -2,7 +2,7 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
 
 (function(){
     let dataAtual = new Date();
-    let selects = document.querySelectorAll("#calendario thead select");
+    let selects = document.querySelectorAll("#filtro-calendario select");
     let carregarMesesSelect = meses => {
         let selectMeses = selects[0];
         meses.forEach((mes,id)=>{
@@ -24,9 +24,7 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         let anoAtual = dataAtual.getFullYear();
         for(let i = 1; i <= 20;i++) selectAnos.appendChild(criarOptionSelect(((anoAtual + 11)  - i)));
     }
-
     carregarAnosSelect();
-
     let mes = 4;
     let ano = 2023;
     let datas = [];
