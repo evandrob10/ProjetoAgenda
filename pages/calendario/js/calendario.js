@@ -89,6 +89,7 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         for(let i = numeroValidos.length - diff; i < numeroValidos.length;i++){
             diasDiff.push(numeroValidos[i]);
         }
+        console.log(diasDiff);
         return diasDiff;
     }
     let criarTd = conteudo =>{
