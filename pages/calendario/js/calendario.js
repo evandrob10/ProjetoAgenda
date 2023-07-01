@@ -25,21 +25,72 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         for(let i = 1; i <= 20;i++) selectAnos.appendChild(criarOptionSelect(((anoAtual + 11)  - i)));
     }
     carregarAnosSelect();    
+    let coletarDados = () => {
+        let selectMes = selects[0].value;
+        let selectAno = Number (selects[1].value);
+        for(let mes in meses) if(meses[mes] === selectMes) selectMes = Number(mes) + 1;
+        return [selectMes,selectAno];
+    }
+    let selectDados = coletarDados();
     selects.forEach((select)=>{
         select.addEventListener("change",()=> {
-            let selectMes = selects[0].value;
-            let selectAno = Number (selects[1].value);
-            for(let mes in meses) if(meses[mes] === selectMes) selectMes = Number(mes) + 1;
-            numeroValidos(selectMes,selectAno);
+            selectDados = coletarDados();
+            atualizarNumerosCalendario(selectDados[0],selectDados[1]);
         });
     })
-    let numeroValidos = (mes,ano)=>{
-        let datas = [{}];
-        for(let i = 0; i < 32;i++) {
-            datas[0][i] = {date: new Date(`${ano}-${mes}-${i}`),display:false};
+    let numerosCalendario = (mes,ano)=>{
+        let difDomDay = (-(0 - numeroValidos(mes,ano)[0].date.getDay()));
+        let numeros = [...mesAnterio(mes,ano,difDomDay),...numeroValidos(mes,ano)];
+        let numerosPosterior = numeroPosterio(numeros, mes,ano);
+        numeros = [...mesAnterio(mes,ano,difDomDay),...numeroValidos(mes,ano),...numerosPosterior];
+        return numeros;
+    }
+    let numeroPosterio = (numeros, mes, ano) =>{
+        let numeroPosterio = [];
+        let count = 0;
+        let dia = 2;
+        do{
+            numeroPosterio[count] = {date: new Date(`${ano}-${mes + 1}-${dia}`),display:false,foraDoMes:true};
+            count++;
+            dia++;
+        }while((count + numeros.length) <= 41);
+        return numeroPosterio;
+    }
+    let numeroValidos = (mes,ano) =>{
+        let datas = [];
+        for(let i = 2; i < 32;i++) {
+            datas[i] = {date: new Date(`${ano}-${mes}-${i}`),display:false};
         };
-        let numeroValidos = datas.filter( data => data);
+        let numeroValidos = datas.filter( (data) => {
+            return data.date != "Invalid Date";
+        });
+        numeroValidos.push({date: new Date(`${ano}-${mes + 1}-${1}`),display:false});
+        let dataAtual = new Date();
+        let dia = numeroValidos.map((valor)=>{
+            let dataIgual = dataFormatada(valor.date.getDate(),valor.date.getMonth(),valor.date.getFullYear()) === dataFormatada(dataAtual.getDate(),dataAtual.getMonth(),dataAtual.getFullYear());
+            if(dataIgual) valor.diaDoMes = true; 
+            return valor;
+        })
+        console.log(dia);
         return numeroValidos;
+    }
+    let dataFormatada = (dia,mes, ano) => `${dia}/${mes}/${ano}`;
+    let mesAnterio = (mes,ano,diff) =>{
+        let mesAnterio = [];
+        let count = 0;
+        for(let i = 0; i < 32;i++) {
+            mesAnterio[count] = {date: new Date(`${ano}-${mes-1}-${i}`),display:false,foraDoMes:true};
+            count++;
+        };
+        mesAnterio.push({date: new Date(`${ano}-${mes}-${1}`),display:false,foraDoMes:true});
+        let numeroValidos = mesAnterio.filter( (data) => {
+            return data.date != "Invalid Date";
+        });
+        let diasDiff = [];
+        for(let i = numeroValidos.length - diff; i < numeroValidos.length;i++){
+            diasDiff.push(numeroValidos[i]);
+        }
+        return diasDiff;
     }
     let criarTd = conteudo =>{
         let td = document.createElement("td");
@@ -50,22 +101,33 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         let linha = document.createElement("tr");
         return linha;
     }
-    let atualizarNumerosCalendario = (mes,ano) => {
-        let linhas = [];
-        for(let i = 0; i < 7;i++){
-            let linha = criarLinha();
-            let count = 0;
-            for(let data in numeroValidos(mes,ano)[0]){
-                if(!numeroValidos(mes,ano)[0][data].display && count <= 7){
-                    linha.appendChild(criarTd(numeroValidos(mes,ano)[0][data].date.getDate()));
-                    numeroValidos(mes,ano)[0][data].display = true;
-                    count++;
-                }
-                console.log("executado");
-            }
-            linhas[i] = linha;
+    let calendario = document.querySelector("#calendario tbody");
+    let limparTds = ()=>{
+        let trs = calendario.querySelectorAll("tr");
+        for(let tr of  trs){
+            tr.remove();
         }
-        console.log(linhas);
     }
-    atualizarNumerosCalendario();
+    let atualizarNumerosCalendario = (mes,ano) => {
+        calendario = document.querySelector("#calendario tbody");
+        limparTds();
+        let numeros = numerosCalendario(mes,ano);
+        let newLinhas;
+        for(let i = 0; i < 6; i++){
+            newLinhas = criarLinha();
+            let count = 0; 
+            for(let numero of numeros){
+                if(!numero.display && count < 7){
+                    let td = criarTd(numero.date.getDate());
+                    if(numero.foraDoMes) td.setAttribute("class","dia-fora-mes");
+                    if(numero.diaDoMes) td.setAttribute("class","dia-clicado");
+                    newLinhas.appendChild(td);
+                    numero.display = true;
+                    count++
+                } 
+            }
+            calendario.appendChild(newLinhas);
+        }
+    }
+    atualizarNumerosCalendario(selectDados[0],selectDados[1]);
 })();
