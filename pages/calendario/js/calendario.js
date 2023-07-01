@@ -71,7 +71,6 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
             if(dataIgual) valor.diaDoMes = true; 
             return valor;
         })
-        console.log(dia);
         return numeroValidos;
     }
     let dataFormatada = (dia,mes, ano) => `${dia}/${mes}/${ano}`;
