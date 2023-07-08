@@ -48,7 +48,7 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
     let numeroPosterio = (numeros, mes, ano) =>{
         let numeroPosterio = [];
         let count = 0;
-        let dia = 1;
+        let dia = 2;
         do{
             numeroPosterio[count] = {date: new Date(`${ano}-${mes + 1}-${dia} 15:00`),display:false,foraDoMes:true};
             count++;
@@ -58,7 +58,7 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
     }
     let numeroValidos = (mes,ano) =>{
         let datas = [];
-        for(let i = 1; i < 32;i++) {
+        for(let i = 2; i < 32;i++) {
             datas[i] = {date: new Date(`${ano}-${mes}-${i} 15:00`),display:false};
         };
         let numeroValidos = datas.filter( (data) => {
