@@ -48,9 +48,9 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
     let numeroPosterio = (numeros, mes, ano) =>{
         let numeroPosterio = [];
         let count = 0;
-        let dia = 2;
+        let dia = 1;
         do{
-            numeroPosterio[count] = {date: new Date(`${ano}-${mes + 1}-${dia}`),display:false,foraDoMes:true};
+            numeroPosterio[count] = {date: new Date(`${ano}-${mes + 1}-${dia} 15:00`),display:false,foraDoMes:true};
             count++;
             dia++;
         }while((count + numeros.length) <= 41);
@@ -58,15 +58,15 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
     }
     let numeroValidos = (mes,ano) =>{
         let datas = [];
-        for(let i = 2; i < 32;i++) {
-            datas[i] = {date: new Date(`${ano}-${mes}-${i}`),display:false};
+        for(let i = 1; i < 32;i++) {
+            datas[i] = {date: new Date(`${ano}-${mes}-${i} 15:00`),display:false};
         };
         let numeroValidos = datas.filter( (data) => {
             return data.date != "Invalid Date";
         });
         numeroValidos.push({date: new Date(`${ano}-${mes + 1}-${1}`),display:false});
         let dataAtual = new Date();
-        let dia = numeroValidos.map((valor)=>{
+        numeroValidos.map((valor)=>{
             let dataIgual = dataFormatada(valor.date.getDate(),valor.date.getMonth(),valor.date.getFullYear()) === dataFormatada(dataAtual.getDate(),dataAtual.getMonth(),dataAtual.getFullYear());
             if(dataIgual) valor.diaDoMes = true; 
             return valor;
@@ -78,7 +78,7 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         let mesAnterio = [];
         let count = 0;
         for(let i = 0; i < 32;i++) {
-            mesAnterio[count] = {date: new Date(`${ano}-${mes-1}-${i}`),display:false,foraDoMes:true};
+            mesAnterio[count] = {date: new Date(`${ano}-${mes-1}-${i} 15:00`),display:false,foraDoMes:true};
             count++;
         };
         mesAnterio.push({date: new Date(`${ano}-${mes}-${1}`),display:false,foraDoMes:true});
@@ -89,7 +89,6 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         for(let i = numeroValidos.length - diff; i < numeroValidos.length;i++){
             diasDiff.push(numeroValidos[i]);
         }
-        console.log(diasDiff);
         return diasDiff;
     }
     let criarTd = conteudo =>{
@@ -131,3 +130,4 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
     }
     atualizarNumerosCalendario(selectDados[0],selectDados[1]);
 })();
+7
