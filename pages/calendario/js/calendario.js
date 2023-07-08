@@ -29,6 +29,7 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         let selectMes = selects[0].value;
         let selectAno = Number (selects[1].value);
         for(let mes in meses) if(meses[mes] === selectMes) selectMes = Number(mes) + 1;
+        console.log(selectMes,selectAno);
         return [selectMes,selectAno];
     }
     let selectDados = coletarDados();
@@ -49,11 +50,19 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         let numeroPosterio = [];
         let count = 0;
         let dia = 1;
-        do{
-            numeroPosterio[count] = {date: new Date(`${ano}-${mes + 1}-${dia} 15:00`),display:false,foraDoMes:true};
-            count++;
-            dia++;
-        }while((count + numeros.length) <= 41);
+        if(mes != 12){
+            do{
+                numeroPosterio[count] = {date: new Date(`${ano}-${mes + 1}-${dia} 15:00`),display:false,foraDoMes:true};
+                count++;
+                dia++;
+            }while((count + numeros.length) <= 41);
+        }else{
+            do{
+                numeroPosterio[count] = {date: new Date(`${ano + 1}-${1}-${dia} 15:00`),display:false,foraDoMes:true};
+                count++;
+                dia++;
+            }while((count + numeros.length) <= 41);
+        }
         return numeroPosterio;
     }
     let numeroValidos = (mes,ano) =>{
@@ -76,17 +85,33 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
     let mesAnterio = (mes,ano,diff) =>{
         let mesAnterio = [];
         let count = 0;
-        for(let i = 0; i < 32;i++) {
-            mesAnterio[count] = {date: new Date(`${ano}-${mes-1}-${i} 15:00`),display:false,foraDoMes:true};
-            count++;
-        };
-        let numeroValidos = mesAnterio.filter( (data) => {
-            return data.date !== "Invalid Date" && data.date.getMonth() + 1 === (mes - 1);
-        });
         let diasDiff = [];
-        for(let i = numeroValidos.length - diff; i < numeroValidos.length;i++){
-            diasDiff.push(numeroValidos[i]);
+        if(mes === 1){
+            for(let i = 0; i < 32;i++) {
+                mesAnterio[count] = {date: new Date(`${ano - 1}-${12}-${i} 15:00`),display:false,foraDoMes:true};
+                count++;
+            };
+            let numeroValidos = mesAnterio.filter( (data) => {
+                return data.date !== "Invalid Date";
+            });
+            diasDiff = [];
+            for(let i = numeroValidos.length - diff; i < numeroValidos.length;i++){
+                diasDiff.push(numeroValidos[i]);
+            }
+        }else{
+            for(let i = 0; i < 32;i++) {
+                mesAnterio[count] = {date: new Date(`${ano}-${mes-1}-${i} 15:00`),display:false,foraDoMes:true};
+                count++;
+            };
+            let numeroValidos = mesAnterio.filter( (data) => {
+                return data.date !== "Invalid Date" && data.date.getMonth() + 1 === (mes - 1);
+            });
+            diasDiff = [];
+            for(let i = numeroValidos.length - diff; i < numeroValidos.length;i++){
+                diasDiff.push(numeroValidos[i]);
+            }
         }
+        console.log(diasDiff);
         return diasDiff;
     }
     let criarTd = conteudo =>{
