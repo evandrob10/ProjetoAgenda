@@ -43,8 +43,6 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         let numeros = [...mesAnterio(mes,ano,difDomDay),...numeroValidos(mes,ano)];
         let numerosPosterior = numeroPosterio(numeros, mes,ano);
         numeros = [...mesAnterio(mes,ano,difDomDay),...numeroValidos(mes,ano),...numerosPosterior];
-
-        console.log(numeros);
         return numeros;
     }
     let numeroPosterio = (numeros, mes, ano) =>{
@@ -64,32 +62,31 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
             datas[i] = {date: new Date(`${ano}-${mes}-${i} 15:00`),display:false};
         };
         let numeroValidos = datas.filter( (data) => {
-            return data.date != "Invalid Date";
+            return data.date !== "Invalid Date" && (data.date.getMonth() + 1) === mes;
         });
-        let dataAtual = new Date();
-        numeroValidos.map((valor)=>{
+        let dataAtual = new Date(); 
+        let dias = numeroValidos.map((valor)=>{
             let dataIgual = dataFormatada(valor.date.getDate(),valor.date.getMonth(),valor.date.getFullYear()) === dataFormatada(dataAtual.getDate(),dataAtual.getMonth(),dataAtual.getFullYear());
             if(dataIgual) valor.diaDoMes = true; 
             return valor;
         })
-        return numeroValidos;
+        return dias;
     }
     let dataFormatada = (dia,mes, ano) => `${dia}/${mes}/${ano}`;
     let mesAnterio = (mes,ano,diff) =>{
         let mesAnterio = [];
         let count = 0;
-        for(let i = 0; i < 31;i++) {
+        for(let i = 0; i < 32;i++) {
             mesAnterio[count] = {date: new Date(`${ano}-${mes-1}-${i} 15:00`),display:false,foraDoMes:true};
             count++;
         };
         let numeroValidos = mesAnterio.filter( (data) => {
-            return data.date != "Invalid Date";
+            return data.date !== "Invalid Date" && data.date.getMonth() + 1 === (mes - 1);
         });
         let diasDiff = [];
         for(let i = numeroValidos.length - diff; i < numeroValidos.length;i++){
             diasDiff.push(numeroValidos[i]);
         }
-        console.log(diasDiff);
         return diasDiff;
     }
     let criarTd = conteudo =>{
