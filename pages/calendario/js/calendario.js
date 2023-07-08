@@ -43,6 +43,8 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         let numeros = [...mesAnterio(mes,ano,difDomDay),...numeroValidos(mes,ano)];
         let numerosPosterior = numeroPosterio(numeros, mes,ano);
         numeros = [...mesAnterio(mes,ano,difDomDay),...numeroValidos(mes,ano),...numerosPosterior];
+
+        console.log(numeros);
         return numeros;
     }
     let numeroPosterio = (numeros, mes, ano) =>{
@@ -64,7 +66,6 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         let numeroValidos = datas.filter( (data) => {
             return data.date != "Invalid Date";
         });
-        numeroValidos.push({date: new Date(`${ano}-${mes + 1}-${1}`),display:false});
         let dataAtual = new Date();
         numeroValidos.map((valor)=>{
             let dataIgual = dataFormatada(valor.date.getDate(),valor.date.getMonth(),valor.date.getFullYear()) === dataFormatada(dataAtual.getDate(),dataAtual.getMonth(),dataAtual.getFullYear());
@@ -77,11 +78,10 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
     let mesAnterio = (mes,ano,diff) =>{
         let mesAnterio = [];
         let count = 0;
-        for(let i = 0; i < 32;i++) {
+        for(let i = 0; i < 31;i++) {
             mesAnterio[count] = {date: new Date(`${ano}-${mes-1}-${i} 15:00`),display:false,foraDoMes:true};
             count++;
         };
-        mesAnterio.push({date: new Date(`${ano}-${mes}-${1}`),display:false,foraDoMes:true});
         let numeroValidos = mesAnterio.filter( (data) => {
             return data.date != "Invalid Date";
         });
@@ -89,6 +89,7 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         for(let i = numeroValidos.length - diff; i < numeroValidos.length;i++){
             diasDiff.push(numeroValidos[i]);
         }
+        console.log(diasDiff);
         return diasDiff;
     }
     let criarTd = conteudo =>{
