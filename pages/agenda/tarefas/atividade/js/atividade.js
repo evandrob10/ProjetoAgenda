@@ -19,20 +19,10 @@ let idParametro = () => idAtividade.indexOf("&") === -1 ? idAtividade.slice((idA
                     break;
                 case 2:
                     elementos.value = dados["horario"];
-                    break;
-                case 3:
-                   if(elementos.getAttribute("id") === dados["status"].toLowerCase()){
-                        elementos.setAttribute("checked", "");
-                   }
-                   break;
-                case 4:
-                    if(dados["descricao"] === "-"){
-                        descricao.value = "";
-                        break;
-                    };
-                    descricao.value = dados["descricao"];         
+                    break;      
             }
-        })   
+        })
+        descricao.value = dados["descricao"];  
     }
     mostrarDados()
 })();
