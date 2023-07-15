@@ -51,41 +51,43 @@
     let dataAtual = new Date();
     let alertaTarefasProximas = document.querySelector(".alerta-tarefas table tbody");
     let diffDats = dataNova => Math.ceil((dataNova - dataAtual) / (1000 * 3600 * 24));
+
     Object.keys(localStorage).map(atividades => atividade[atividades] = (JSON.parse(localStorage.getItem(atividades))));
     let atividadesProximas = atividade.filter((atividade)=>{
         if(atividade){
             let dataNova =  atividade.data.split("-");
             let dataFormatada = new Date(dataNova[0],dataNova[1]-1,dataNova[2]);
-            return diffDats(dataFormatada) < 5 && atividade.status !== "atrasados";
+            return diffDats(dataFormatada) < 5 && atividade.status !== "atrasados" && atividade.status !== "concluido";
         }
     })
     let criarAtividadeProxima = atividade =>{ 
-    let linha = document.createElement("tr");
-    let tds = [];
-    for(let i = 0; i < 4;i++) tds[i] = document.createElement("td");
-    tds.map((td,id)=>{
-        switch(id){
-            case 0:
-                let dataFormatada = atividade.data.split("-");
-                td.innerText = `${dataFormatada[2]}/${dataFormatada[1]}/${dataFormatada[0]}`;
-                break;
-            case 1:
-                td.innerText = atividade.horario;
-                break;
-            case 2:
-                td.innerText = atividade.assunto;
-                break;
-            case 3:
-                let button = document.createElement("button");
-                button.setAttribute("type","button");
-                button.setAttribute("id",atividade.id);
-                button.innerText = "Visualizar";
-                td.appendChild(button);
-                break;
-            }
-                linha.appendChild(td);
-            })
-            return linha;
+        let linha = document.createElement("tr");
+        let tds = [];
+        for(let i = 0; i < 4;i++) tds[i] = document.createElement("td");
+        tds.map((td,id)=>{
+            switch(id){
+                case 0:
+                    let dataFormatada = atividade.data.split("-");
+                    td.innerText = `${dataFormatada[2]}/${dataFormatada[1]}/${dataFormatada[0]}`;
+                    break;
+                case 1:
+                    td.setAttribute("class","ocultar-item-desktop");
+                    td.innerText = atividade.horario;
+                    break;
+                case 2:
+                    td.innerText = atividade.assunto;
+                    break;
+                case 3:
+                    let button = document.createElement("button");
+                    button.setAttribute("type","button");
+                    button.setAttribute("id",atividade.id);
+                    button.innerText = "Visualizar";
+                    td.appendChild(button);
+                    break;
+                }
+                    linha.appendChild(td);
+                })
+        return linha;
     }
     atividadesProximas.map( valor => alertaTarefasProximas.appendChild(criarAtividadeProxima(valor)))
     

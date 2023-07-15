@@ -11,9 +11,11 @@ setTimeout(()=>{
 },500);
 (function(){
     let dataAtual = new Date();
-    let diffDats = dataNova => Math.ceil((dataNova - dataAtual) / (1000 * 3600 * 24));
+    let diffDats = dataNova => -(Math.floor((dataAtual - dataNova) / (1000 * 3600 * 24)));
     let atrasados = Object.keys(localStorage).filter((atividadeKey)=>{
-        return diffDats(new Date(JSON.parse(localStorage.getItem(atividadeKey)).data)) < 0;
+        let objDate = new Date(`${JSON.parse(localStorage.getItem(atividadeKey)).data}T${JSON.parse(localStorage.getItem(atividadeKey)).horario}`);
+        let validaAtraso = (objDate.getTime() + 60000) <= dataAtual.getTime() && diffDats(objDate) <= 0;
+        return validaAtraso;
     });
     atrasados.filter((atividadeKey)=>{
         let dadosDoAtrasado =  JSON.parse(localStorage.getItem(atividadeKey));
@@ -23,4 +25,7 @@ setTimeout(()=>{
         }
     })
 })();
+
+
+
 
