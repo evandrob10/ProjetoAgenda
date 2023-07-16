@@ -13,7 +13,8 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         let option = document.createElement("option");
         option.innerText = item;
         if(id === dataAtual.getMonth() || item === dataAtual.getFullYear()) option.setAttribute("selected","");
-        option.setAttribute("value", item);
+        if(!id)option.setAttribute("value", item);
+        if(id || id === 0)option.setAttribute("value",id);
         return option;
     }
     carregarMesesSelect(meses);
@@ -25,9 +26,8 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
     }
     carregarAnosSelect();    
     let coletarDados = () => {
-        let selectMes = selects[0].value;
-        let selectAno = Number (selects[1].value);
-        for(let mes in meses) if(meses[mes] === selectMes) selectMes = Number(mes) + 1;
+        let selectMes = Number(selects[0].value) + 1;
+        let selectAno = Number(selects[1].value);
         return [selectMes,selectAno];
     }
     let selectDados = coletarDados();
@@ -125,7 +125,10 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
                 if(!numero.display && count < 7){
                     let td = criarTd(numero.date.getDate());
                     if(numero.foraDoMes) td.setAttribute("class","dia-fora-mes");
-                    if(numero.diaDoMes) td.setAttribute("class","dia-clicado");
+                    if(numero.diaDoMes) {
+                        td.setAttribute("class","dia-do-mes");
+                        td.setAttribute("title","Dia do mês");
+                    }
                     newLinhas.appendChild(td);
                     numero.display = true;
                     count++
@@ -135,4 +138,43 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
         }
     }
     atualizarNumerosCalendario(selectDados[0],selectDados[1]);
+})();
+//Dias com evento:
+let campoNumeros = document.querySelector("#calendario tbody");
+let selects = document.querySelectorAll("#calendario select");
+let tds = campoNumeros.querySelectorAll("td");
+
+let data = (td,selects)=> new Date(`${selects[1].value}-${Number(selects[0].value) + 1}-0${td.innerText} 00:00`);
+
+(function(){
+    let eventos = ()=>{
+        tds = campoNumeros.querySelectorAll("td");
+        let todosEventos = Object.keys(localStorage).map( valor => JSON.parse(localStorage.getItem(valor)));
+        let datasComEvento = todosEventos.map(valor => (new Date(`${valor.data} 00:00`)));
+    
+        for(let td of tds){
+            if(!td.getAttribute("class") || td.getAttribute("class") === "dia-clicado"){
+                for(let evento of datasComEvento){
+                    console.log(td);
+                    if(Number(td.innerText) === evento.getDate() && Number(selects[0].value) === evento.getMonth() && Number(selects[1].value) === evento.getFullYear()){
+                        td.setAttribute("class","dia-com-evento");
+                        td.setAttribute("title","Data com evento");
+                    }
+                }
+            }
+        }
+    }
+    selects.forEach((valor)=> valor.addEventListener("change",()=> eventos()));
+    eventos();
+})();
+//TAREFAS: BARRA LATERAL DIREITA
+(function(){
+    let diasSemana = ["DOMINGO","SEGUNDA-FEIRA","TERÇA-FEIRA","QUARTA-FEIRA","QUINTA-FEIRA","SEXTA-FEIRA","SÁBADO"]    
+    
+    for(let td of tds){
+        td.addEventListener("click",()=>{
+            
+        })
+    }
+    
 })();

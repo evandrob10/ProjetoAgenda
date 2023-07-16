@@ -70,13 +70,21 @@ main{
 #calendario .dia-fora-mes{
     color: #f1f1f17a;
 }
-#calendario .dia-clicado{
+#calendario .dia-do-mes{
     color: #000;
     border-radius: .1em;
     background-color: #f1f1f1;
     box-shadow: 0px 0px 0px  2px #f1f1f1;
 }
-#calendario .dia-clicado:hover{
+
+#calendario .dia-com-evento{
+    color: #ffffff;
+    border-radius: .1em;
+    background-color: #f73737;
+    box-shadow: 0px 0px 0px  2px #f1f1f1;
+}
+
+#calendario .dia-do-mes:hover,#calendario .dia-com-evento:hover{
     transform: scale(1.1);
 }
 
