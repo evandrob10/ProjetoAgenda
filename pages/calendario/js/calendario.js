@@ -143,9 +143,7 @@ let meses = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOS
 let campoNumeros = document.querySelector("#calendario tbody");
 let selects = document.querySelectorAll("#calendario select");
 let tds = campoNumeros.querySelectorAll("td");
-
 let data = (td,selects)=> new Date(`${selects[1].value}-${Number(selects[0].value) + 1}-0${td.innerText} 00:00`);
-
 (function(){
     let eventos = ()=>{
         tds = campoNumeros.querySelectorAll("td");
@@ -155,7 +153,6 @@ let data = (td,selects)=> new Date(`${selects[1].value}-${Number(selects[0].valu
         for(let td of tds){
             if(!td.getAttribute("class") || td.getAttribute("class") === "dia-clicado"){
                 for(let evento of datasComEvento){
-                    console.log(td);
                     if(Number(td.innerText) === evento.getDate() && Number(selects[0].value) === evento.getMonth() && Number(selects[1].value) === evento.getFullYear()){
                         td.setAttribute("class","dia-com-evento");
                         td.setAttribute("title","Data com evento");
@@ -169,12 +166,51 @@ let data = (td,selects)=> new Date(`${selects[1].value}-${Number(selects[0].valu
 })();
 //TAREFAS: BARRA LATERAL DIREITA
 (function(){
-    let diasSemana = ["DOMINGO","SEGUNDA-FEIRA","TERÇA-FEIRA","QUARTA-FEIRA","QUINTA-FEIRA","SEXTA-FEIRA","SÁBADO"]    
+    let campoTarefas = document.querySelector("#eventos-por-dia");
+    let diasSemana = ["DOMINGO","SEGUNDA-FEIRA","TERÇA-FEIRA","QUARTA-FEIRA","QUINTA-FEIRA","SEXTA-FEIRA","SÁBADO"];    
     
-    for(let td of tds){
-        td.addEventListener("click",()=>{
-            
-        })
+    let alterDadosBarra = ()=>{
+        let dia;
+        let data;
+        let mes = selects[0].value;
+        let ano = selects[1].value;
+        let zeroAesquerda = num => num < 10 ? `0${num}`: num;
+        for(let td of tds){
+            td.addEventListener("click",()=>{
+                if(td.getAttribute("class") === "dia-com-evento") dia = td.innerText;
+                let Strong = document.querySelector("#eventos-por-dia caption strong");
+                data = new Date(`${ano}-${zeroAesquerda(Number(mes) + 1)}-${zeroAesquerda(Number(dia))} 05:00`); 
+                if(dia) Strong.innerText = `${zeroAesquerda(dia)} ${meses[mes]} ${ano} - ${diasSemana[data.getDay()]}`;
+                campoTarefas.style.display = "";
+            })
+        }
     }
-    
+    alterDadosBarra();
+    let limparCampoEventos = () =>{
+        let trs = document.querySelectorAll("#eventos-por-dia tbody tr");
+        for(let tr of trs) tr.remove();
+    }
+    let criarLinhaComTds = (data, horario, tarefa) =>{
+        let linha  = document.createElement("tr");
+        for(let i = 1; i <= 4;i++){
+            let td = document.createElement("td");
+            switch(i){
+                case 1:
+                    td.innerText = data;
+                    break;
+                case 2:
+                    td.innerText = horario;
+                    break;
+                case 3:
+                    td.innerText = tarefa;
+                    break;
+                case 4:
+                    td.innerText = "VISUALIZAR";
+                    break;
+            }
+            linha.appendChild(td);
+        }
+        return linha;     
+    }
+    selects.forEach((valor)=> valor.addEventListener("change",()=> alterDadosBarra()));
 })();
