@@ -51,7 +51,16 @@ section{
     height: 50%;
 }
 .alerta-tarefas table{
-    border-spacing: 0;
+    border-spacing: 0 20px;
+}
+.alerta-tarefas table thead tr{
+    color: #f1f1f1;
+    border-bottom: 5px solid;
+    background-color: #0e569d;
+}
+.alerta-tarefas table tbody tr{
+    text-align: center;
+    box-shadow: 0px 2px 2px #00000052;
 }
 .alerta-tarefas td,.alerta-tarefas th{
     padding: 5px;
@@ -60,14 +69,16 @@ section{
 .alerta-tarefas td:last-child button{
     border: none;
     cursor: pointer;
-    font-size: 12pt;
-    color:#f1f1f1;
-    font-weight: 600;
-    padding: 5px 10px; 
+    font-weight: 700;
+    padding: 5px 20px;
     text-align: center;
-    border-radius: .5em;  
-    box-shadow: 0px 1px 1px #000;
-    background-color: rgb(21, 169, 68) ;
+    border-radius: .3em;
+    box-shadow: 0px 1px 3px #000;
+}
+.alerta-tarefas td:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .alerta-tarefas td:last-child button:hover{
     transform: scale(1.1);

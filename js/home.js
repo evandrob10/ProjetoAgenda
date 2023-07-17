@@ -81,7 +81,7 @@
                     let button = document.createElement("button");
                     button.setAttribute("type","button");
                     button.setAttribute("id",atividade.id);
-                    button.innerText = "Visualizar";
+                    button.innerText = "VER";
                     td.appendChild(button);
                     break;
                 }

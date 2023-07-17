@@ -178,8 +178,7 @@ let data = (td,selects)=> new Date(`${selects[1].value}-${Number(selects[0].valu
         for(let td of tds){
             td.addEventListener("click",()=>{
                 dia = td;
-                if(dia.getAttribute("class") === "dia-com-evento") dia = td.innerText;
-                
+                if(dia.getAttribute("class") === "dia-com-evento") dia = td.innerText;     
                 let Strong = document.querySelector("#eventos-por-dia caption strong");
                 data = new Date(`${ano}-${zeroAesquerda(Number(mes) + 1)}-${zeroAesquerda(Number(dia))} 05:00`); 
                 if(dia !== td) Strong.innerText = `${zeroAesquerda(dia)} ${meses[mes]} ${ano} - ${diasSemana[data.getDay()]}`;
