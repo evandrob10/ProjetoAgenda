@@ -177,11 +177,14 @@ let data = (td,selects)=> new Date(`${selects[1].value}-${Number(selects[0].valu
         let zeroAesquerda = num => num < 10 ? `0${num}`: num;
         for(let td of tds){
             td.addEventListener("click",()=>{
-                if(td.getAttribute("class") === "dia-com-evento") dia = td.innerText;
+                dia = td;
+                if(dia.getAttribute("class") === "dia-com-evento") dia = td.innerText;
+                
                 let Strong = document.querySelector("#eventos-por-dia caption strong");
                 data = new Date(`${ano}-${zeroAesquerda(Number(mes) + 1)}-${zeroAesquerda(Number(dia))} 05:00`); 
-                if(dia) Strong.innerText = `${zeroAesquerda(dia)} ${meses[mes]} ${ano} - ${diasSemana[data.getDay()]}`;
-                campoTarefas.style.display = "";
+                if(dia !== td) Strong.innerText = `${zeroAesquerda(dia)} ${meses[mes]} ${ano} - ${diasSemana[data.getDay()]}`;
+                (dia !== td) ? campoTarefas.style.display = "" : campoTarefas.style.display = "none";
+                console.log(dia);
             })
         }
     }
